@@ -51,13 +51,13 @@ public class ProductController {
     @PostMapping("/items/buy")
     public String buyProduct(@RequestParam Long productId, @RequestParam Long customerId) {
         List<Product> products = new ArrayList<>();
-        Date date = new Date();
         Product product = productRepo.findById(productId).orElse(null);
         Customer customer = customerRepo.findById(customerId).orElse(null);
 
         if (product != null && customer != null) {
+            productRepo.save(product);
             products.add(product);
-            Orders order = new Orders(date, customer, products);
+            Orders order = new Orders(new Date(), customer, products);
             orderRepo.save(order);
             return "Order number " + order.getId() + " is added";
         }

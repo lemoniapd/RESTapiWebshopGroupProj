@@ -26,10 +26,12 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
+    /*
     @RequestMapping("/orders/{id}")
     public Orders getOrderById(@PathVariable Long id){
         return orderRepo.findById(id).get();
     }
+    */
 
     @RequestMapping("/orders/{customerId}")
     public List<Orders> getOrderByCustomerId(@PathVariable Long customerId){

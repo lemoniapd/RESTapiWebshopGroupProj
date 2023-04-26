@@ -1,5 +1,6 @@
 package com.example.restapiwebshopgroupproj.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,12 +20,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     protected Orders orders;
 
     public Product(double price, String name) {
         this.price = price;
         this.name = name;
     }
-
-
 }

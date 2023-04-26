@@ -22,9 +22,10 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     protected Customer customer;
 
-    @OneToMany (mappedBy = "orders", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "orders", fetch = FetchType.EAGER)
     protected List<Product> products;
 
     public Orders(Date date, Customer customer, List<Product> products) {

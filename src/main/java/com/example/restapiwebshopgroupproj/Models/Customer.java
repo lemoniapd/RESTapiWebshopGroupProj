@@ -20,7 +20,7 @@ public class Customer {
     protected String name;
     protected String socSecNr;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     protected List<Orders> orders;
 
 

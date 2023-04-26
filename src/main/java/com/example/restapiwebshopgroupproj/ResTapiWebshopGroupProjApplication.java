@@ -50,10 +50,12 @@ public class ResTapiWebshopGroupProjApplication {
             productRepository.save(p5);
             productRepository.save(p6);
 
+            /*
             List<Product> productsList = new ArrayList<>();
             productsList.add(p1);
             Orders o1 = new Orders(new Date(), c1, productsList);
             orderRepository.save(o1);
+             */
 
         };
     }
