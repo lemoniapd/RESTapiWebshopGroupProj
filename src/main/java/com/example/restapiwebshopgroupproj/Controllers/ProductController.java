@@ -1,6 +1,7 @@
 package com.example.restapiwebshopgroupproj.Controllers;
 
 
+import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Order;
 import com.example.restapiwebshopgroupproj.Models.Product;
 import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
@@ -8,6 +9,7 @@ import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
 import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,8 +46,18 @@ public class ProductController {
     }
 
     @PostMapping("/items/buy")
-    public String addToCart(@RequestParam Long productId, @RequestParam Long customerId){
-        Order order = n
+    public String buyProduct(@RequestParam Long productId, @RequestParam Long customerId) {
+        List<Product> products = new ArrayList<>();
+        Product product = productRepo.findById(productId).orElse(null);
+        Customer customer = customerRepo.findById(customerId).orElse(null);
+
+        if (product != null && customer != null) {
+            products.add(product);
+            Order order = new Order(customer, products);
+            orderRepo.save(order);
+            return "Order number " + order.getId() + " is added";
+        }
+        return "Product ID or customer ID does not exist.";
     }
 
 
