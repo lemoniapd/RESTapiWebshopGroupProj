@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 public class Product {
 

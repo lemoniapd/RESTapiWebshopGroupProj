@@ -8,23 +8,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 public class Order {
 
     @Id
     @GeneratedValue
     protected Long id;
-    
-    @DateTimeFormat
+/*
+    @GeneratedValue
     protected Date date;
+
+ */
 
     @ManyToOne
     @JoinColumn
     protected Customer customer;
 
-    @OneToMany (mappedBy = "product.id")
+    @OneToMany (mappedBy = "orders")
     protected List<Product> products;
 
     public Order(Customer customer, List<Product> products){

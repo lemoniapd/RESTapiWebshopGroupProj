@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
-
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 public class Customer {
 
@@ -18,8 +19,8 @@ public class Customer {
     protected String name;
     protected String socSecNr;
 
-    @OneToMany (mappedBy = "order.id")
-    protected List<Order> orderList;
+    @OneToMany (mappedBy = "customer")
+    protected List<Orders> orderList = new ArrayList<Orders>();
 
     public Customer(String name, String socSecNr) {
         this.name = name;
