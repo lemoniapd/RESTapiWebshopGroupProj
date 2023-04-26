@@ -14,24 +14,32 @@ import java.util.List;
 @RestController
 public class OrderController {
 
+    private final OrderRepository orderRepo;
+    private final CustomerRepository customerRepo;
 
-    private final OrderRepository repo;
-
-    public OrderController(OrderRepository repo) {
-        this.repo = repo;
+    public OrderController(OrderRepository orderRepo, CustomerRepository customerRepo) {
+        this.orderRepo = orderRepo;
+        this.customerRepo = customerRepo;
     }
 
     @RequestMapping("/orders")
     public List<Order> getAllOrders(){
-        return repo.findAll();
+        return orderRepo.findAll();
     }
 
     @RequestMapping("/orders/{id}")
     public Order getOrderById(@PathVariable Long id){
-        return repo.findById(id).get();
+        return orderRepo.findById(id).get();
     }
 
-
-
+    @RequestMapping("/orders/{customerId}")
+    public List<Order> getOrderByCustomerId(@PathVariable Long customerId){
+        Customer currentCustomer = customerRepo.findById(customerId).orElse(null);
+    if (currentCustomer!=null){
+           return currentCustomer.getOrderList();
+    }
+       //TODO, ändra returtyp vid failure?
+    return null;
+    }
 
 }

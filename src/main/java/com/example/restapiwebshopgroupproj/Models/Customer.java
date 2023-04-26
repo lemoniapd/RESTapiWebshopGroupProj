@@ -21,9 +21,8 @@ public class Customer {
     @OneToMany (mappedBy = "order.id")
     protected List<Order> orderList;
 
-    public Customer(String name, String socSecNr, List<Order> orderList) {
+    public Customer(String name, String socSecNr) {
         this.name = name;
         this.socSecNr = socSecNr;
-        this.orderList = orderList;
     }
 }

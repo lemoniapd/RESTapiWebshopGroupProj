@@ -19,7 +19,7 @@ public class Product {
     @JoinColumn
     protected Order order;
 
-    public Product(double price, String name, Order order) {
+    public Product(double price, String name) {
         this.price = price;
         this.name = name;
     }
