@@ -28,6 +28,12 @@ public class CustomerController {
         return repo.findById(id).orElse(null);
     }
 
+    @RequestMapping("customers/delete/{id}")
+    public String deleteCustomer(@PathVariable Long id){
+        repo.deleteById(id);
+        return "Customer " + id + " deleted";
+    }
+
     @PostMapping("/customers/add")
     public String addCustomer(@RequestBody Customer customer) {
         try {
