@@ -1,5 +1,6 @@
 package com.example.restapiwebshopgroupproj.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,8 @@ public class Customer {
     protected String name;
     protected String socSecNr;
 
-    @OneToMany (mappedBy = "customer")
-    protected List<Orders> orderList = new ArrayList<Orders>();
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    protected List<Orders> orderList = new ArrayList<>();
 
     public Customer(String name, String socSecNr) {
         this.name = name;

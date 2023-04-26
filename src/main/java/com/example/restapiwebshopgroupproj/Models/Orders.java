@@ -19,7 +19,6 @@ public class Orders {
     protected Date date;
 
  */
-
     @ManyToOne
     @JoinColumn
     protected Customer customer;
