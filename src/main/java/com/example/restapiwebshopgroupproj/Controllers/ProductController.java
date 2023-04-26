@@ -2,7 +2,7 @@ package com.example.restapiwebshopgroupproj.Controllers;
 
 
 import com.example.restapiwebshopgroupproj.Models.Customer;
-import com.example.restapiwebshopgroupproj.Models.Order;
+import com.example.restapiwebshopgroupproj.Models.Orders;
 import com.example.restapiwebshopgroupproj.Models.Product;
 import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
 import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
@@ -53,7 +53,7 @@ public class ProductController {
 
         if (product != null && customer != null) {
             products.add(product);
-            Order order = new Order(customer, products);
+            Orders order = new Orders(customer, products);
             orderRepo.save(order);
             return "Order number " + order.getId() + " is added";
         }

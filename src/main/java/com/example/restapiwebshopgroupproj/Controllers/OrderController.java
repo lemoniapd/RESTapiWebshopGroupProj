@@ -1,11 +1,10 @@
 package com.example.restapiwebshopgroupproj.Controllers;
 
 import com.example.restapiwebshopgroupproj.Models.Customer;
-import com.example.restapiwebshopgroupproj.Models.Order;
+import com.example.restapiwebshopgroupproj.Models.Orders;
 import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
 import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,17 +22,17 @@ public class OrderController {
     }
 
     @RequestMapping("/orders")
-    public List<Order> getAllOrders(){
+    public List<Orders> getAllOrders(){
         return orderRepo.findAll();
     }
 
     @RequestMapping("/orders/{id}")
-    public Order getOrderById(@PathVariable Long id){
+    public Orders getOrderById(@PathVariable Long id){
         return orderRepo.findById(id).get();
     }
 
     @RequestMapping("/orders/{customerId}")
-    public List<Order> getOrderByCustomerId(@PathVariable Long customerId){
+    public List<Orders> getOrderByCustomerId(@PathVariable Long customerId){
         Customer currentCustomer = customerRepo.findById(customerId).orElse(null);
     if (currentCustomer!=null){
            return currentCustomer.getOrderList();

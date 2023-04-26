@@ -3,15 +3,13 @@ package com.example.restapiwebshopgroupproj.Models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue
@@ -29,7 +27,7 @@ public class Order {
     @OneToMany (mappedBy = "orders")
     protected List<Product> products;
 
-    public Order(Customer customer, List<Product> products){
+    public Orders(Customer customer, List<Product> products){
         this.customer = customer;
         this.products = products;
     }

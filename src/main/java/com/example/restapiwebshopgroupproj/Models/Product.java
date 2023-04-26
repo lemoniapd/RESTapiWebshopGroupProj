@@ -17,7 +17,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn
-    protected Order order;
+    protected Orders orders;
 
     public Product(double price, String name) {
         this.price = price;
