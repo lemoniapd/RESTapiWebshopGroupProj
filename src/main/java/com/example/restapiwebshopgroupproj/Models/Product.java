@@ -15,8 +15,13 @@ public class Product {
     protected double price;
     protected String name;
 
-    public Product(double price, String name) {
+    @ManyToOne
+    @JoinColumn
+    protected Order order;
+
+    public Product(double price, String name, Order order) {
         this.price = price;
         this.name = name;
+        this.order= order;
     }
 }

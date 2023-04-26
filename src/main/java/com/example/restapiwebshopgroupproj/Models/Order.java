@@ -15,6 +15,8 @@ public class Order {
     @Id
     @GeneratedValue
     protected Long id;
+    
+    @GeneratedValue
     protected Date date;
 
     @ManyToOne
@@ -24,8 +26,7 @@ public class Order {
     @OneToMany (mappedBy = "product.id")
     protected List<Product> products;
 
-    public Order(Date date, Customer customer, List<Product> products) {
-        this.date = date;
+    public Order(Customer customer, List<Product> products){
         this.customer = customer;
         this.products = products;
     }
