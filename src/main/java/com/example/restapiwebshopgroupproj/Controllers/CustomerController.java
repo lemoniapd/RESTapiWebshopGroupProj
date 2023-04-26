@@ -24,6 +24,7 @@ public class CustomerController {
 
     @RequestMapping("/customers/{id}")
     public Customer getCustomerById(@PathVariable Long id){
+
         return repo.findById(id).orElse(null);
     }
 
