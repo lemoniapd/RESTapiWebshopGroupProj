@@ -27,7 +27,7 @@ public class CustomerController {
         return repo.findById(id).orElse(null);
     }
 
-    @PostMapping("/customers")
+    @PostMapping("/customers/add")
     public String addCustomer(@RequestBody Customer customer) {
         try {
             repo.save(customer);
