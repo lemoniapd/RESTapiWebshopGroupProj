@@ -22,6 +22,5 @@ public class Product {
     public Product(double price, String name, Order order) {
         this.price = price;
         this.name = name;
-        this.order= order;
     }
 }

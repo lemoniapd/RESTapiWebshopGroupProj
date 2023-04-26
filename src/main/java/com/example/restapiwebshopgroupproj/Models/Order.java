@@ -16,7 +16,7 @@ public class Order {
     @GeneratedValue
     protected Long id;
     
-    @GeneratedValue
+    @DateTimeFormat
     protected Date date;
 
     @ManyToOne

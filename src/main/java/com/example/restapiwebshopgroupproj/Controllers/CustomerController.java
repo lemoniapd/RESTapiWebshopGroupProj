@@ -29,8 +29,12 @@ public class CustomerController {
 
     @PostMapping("/customers")
     public String addCustomer(@RequestBody Customer customer) {
-        repo.save(customer);
-        return "Customer " + customer.getName() + " added";
+        try {
+            repo.save(customer);
+            return "Customer " + customer.getName() + " added";
+        } catch (Exception e){
+            return "Something went wrong when trying to add customer!";
+        }
     }
 
 
