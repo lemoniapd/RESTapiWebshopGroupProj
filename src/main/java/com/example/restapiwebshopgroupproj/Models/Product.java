@@ -1,12 +1,14 @@
 package com.example.restapiwebshopgroupproj.Models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -23,4 +25,6 @@ public class Product {
         this.price = price;
         this.name = name;
     }
+
+
 }

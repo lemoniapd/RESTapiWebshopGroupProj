@@ -35,7 +35,7 @@ public class OrderController {
     public List<Orders> getOrderByCustomerId(@PathVariable Long customerId){
         Customer currentCustomer = customerRepo.findById(customerId).orElse(null);
     if (currentCustomer!=null){
-           return currentCustomer.getOrderList();
+           return currentCustomer.getOrders();
     }
        //TODO, ändra returtyp vid failure?
     return null;

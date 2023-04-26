@@ -4,6 +4,8 @@ import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Product;
 import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
 import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,33 +13,34 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-    private final CustomerRepository repo;
+    private final CustomerRepository customerRepo;
+    private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
 
-    public CustomerController(CustomerRepository repo) {
-        this.repo = repo;
+    public CustomerController(CustomerRepository customerRepo) {
+        this.customerRepo = customerRepo;
     }
 
     @RequestMapping("/customers")
     public List<Customer> getAllCustomers(){
-        return repo.findAll();
+        return customerRepo.findAll();
     }
 
     @RequestMapping("/customers/{id}")
     public Customer getCustomerById(@PathVariable Long id){
 
-        return repo.findById(id).orElse(null);
+        return customerRepo.findById(id).orElse(null);
     }
 
     @RequestMapping("customers/delete/{id}")
     public String deleteCustomer(@PathVariable Long id){
-        repo.deleteById(id);
+        customerRepo.deleteById(id);
         return "Customer " + id + " deleted";
     }
 
     @PostMapping("/customers/add")
     public String addCustomer(@RequestBody Customer customer) {
         try {
-            repo.save(customer);
+            customerRepo.save(customer);
             return "Customer " + customer.getName() + " added";
         } catch (Exception e){
             return "Something went wrong when trying to add customer!";

@@ -20,11 +20,13 @@ public class Customer {
     protected String name;
     protected String socSecNr;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
-    protected List<Orders> orderList = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    protected List<Orders> orders;
+
 
     public Customer(String name, String socSecNr) {
         this.name = name;
         this.socSecNr = socSecNr;
     }
+
 }

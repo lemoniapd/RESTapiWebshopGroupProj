@@ -9,7 +9,9 @@ import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
 import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,7 @@ public class ProductController {
         return productRepo.findById(id).orElse(null);
     }
 
-    @PostMapping("/items")
+    @PostMapping("/items/add")
     public String addProduct(@RequestBody Product product) {
         try {
             productRepo.save(product);
@@ -45,20 +47,26 @@ public class ProductController {
         }
     }
 
+
     @PostMapping("/items/buy")
     public String buyProduct(@RequestParam Long productId, @RequestParam Long customerId) {
         List<Product> products = new ArrayList<>();
+        Date date = new Date();
         Product product = productRepo.findById(productId).orElse(null);
         Customer customer = customerRepo.findById(customerId).orElse(null);
 
         if (product != null && customer != null) {
             products.add(product);
-            Orders order = new Orders(customer, products);
+            Orders order = new Orders(date, customer, products);
             orderRepo.save(order);
             return "Order number " + order.getId() + " is added";
         }
         return "Product ID or customer ID does not exist.";
     }
+
+
+
+
 
 
 }
