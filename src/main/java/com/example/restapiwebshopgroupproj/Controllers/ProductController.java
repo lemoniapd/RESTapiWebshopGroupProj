@@ -55,7 +55,7 @@ public class ProductController {
         Customer customer = customerRepo.findById(customerId).orElse(null);
 
         if (product != null && customer != null) {
-            productRepo.save(product);
+            //productRepo.save(product);
             products.add(product);
             Orders order = new Orders(new Date(), customer, products);
             orderRepo.save(order);

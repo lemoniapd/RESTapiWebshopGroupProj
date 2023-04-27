@@ -18,10 +18,10 @@ public class Product {
     protected double price;
     protected String name;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn
     @JsonIgnore
-    protected Orders orders;
+    protected Orders orders;*/
 
     public Product(double price, String name) {
         this.price = price;

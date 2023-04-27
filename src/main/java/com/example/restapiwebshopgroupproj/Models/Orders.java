@@ -25,7 +25,9 @@ public class Orders {
     @JsonIgnore
     protected Customer customer;
 
-    @OneToMany (mappedBy = "orders", fetch = FetchType.EAGER)
+    @OneToMany (fetch = FetchType.EAGER)
+    //mappedBy = "orders"
+    @JoinColumn
     protected List<Product> products;
 
     public Orders(Date date, Customer customer, List<Product> products) {
