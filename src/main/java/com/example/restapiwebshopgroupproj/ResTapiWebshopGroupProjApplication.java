@@ -23,7 +23,7 @@ public class ResTapiWebshopGroupProjApplication {
     }
 
 
-    /*
+
     @Bean
     public CommandLineRunner demo(CustomerRepository customerRepo, ProductRepository productRepository, OrderRepository orderRepository) {
         return (args) -> {
@@ -52,10 +52,18 @@ public class ResTapiWebshopGroupProjApplication {
             productRepository.save(p5);
             productRepository.save(p6);
 
+            Orders o1 = new Orders(new Date(),c1,List.of(p1));
+            Orders o2 = new Orders(new Date(),c2,List.of(p2));
+            Orders o3 = new Orders(new Date(),c3,List.of(p3));
+
+            orderRepository.save(o1);
+            orderRepository.save(o2);
+            orderRepository.save(o3);
+
         };
     }
 
-    */
+
 
 
 

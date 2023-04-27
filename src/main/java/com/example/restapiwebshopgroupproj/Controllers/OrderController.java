@@ -31,7 +31,7 @@ public class OrderController {
     public Orders getOrderById(@PathVariable Long id){
         return orderRepo.findById(id).get();
     }
-    */
+
 
     @RequestMapping("/orders/{customerId}")
     public List<Orders> getOrderByCustomerId(@PathVariable Long customerId){
@@ -39,7 +39,6 @@ public class OrderController {
     if (currentCustomer!=null){
            return currentCustomer.getOrders();
     }
-       //TODO, ändra returtyp vid failure?
     return null;
     }
 
