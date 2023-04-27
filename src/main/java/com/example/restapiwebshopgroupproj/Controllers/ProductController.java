@@ -63,10 +63,4 @@ public class ProductController {
         }
         return "Product ID or customer ID does not exist.";
     }
-
-
-
-
-
-
 }
