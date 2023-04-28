@@ -11,26 +11,14 @@
     <tbody>
     <tr th:each="o : ${ordersList}">
         <td th:text="${o.getId()}"></td>
-        <td th:text="${o.getDate()}"></td>
+        <td th:text="${o.getFormattedDate(o.getDate())}"></td>
         <td th:text="${o.customer.getName()}"></td>
-<table>
-    <tbody>
-    <tr th:each="p : ${o.getProducts()}">
-        <td th:text="${p.getName()}"></td>
-    </tr>
-    </tbody>
-</table>
-
-
-
-        <!-- <td th:text="${o.products.iterator().getClass().getName()}"></td>
-     <tr th:each="p : ${o.products}">
-             <td th:text="${p.name}"></td>
-         <td th:text="${p.price}"></td>
-
-     </tr>-->
-
-        <td><a th:href="@{/ordersView/delete/{id}(id=${o.id})}">Delete order</a></td><br><br>
+        <td>
+            <p th:each="p : ${o.getProducts()}">
+                <span th:text="${p.getName()}"></span><br>
+            </p>
+        </td>
+        <td><a th:href="@{/ordersView/delete/{id}(id=${o.id})}">Delete order</a></td>
     </tr>
     </tbody>
 </table>

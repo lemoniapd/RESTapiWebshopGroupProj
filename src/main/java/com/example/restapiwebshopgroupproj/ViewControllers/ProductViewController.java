@@ -1,6 +1,7 @@
-package com.example.restapiwebshopgroupproj.Controllers;
+package com.example.restapiwebshopgroupproj.ViewControllers;
 
 import com.example.restapiwebshopgroupproj.Models.Product;
+import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
 import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/products")
 public class ProductViewController {
-
+    private final OrderRepository orderRepo;
     private final ProductRepository productRepo;
 
-    ProductViewController(ProductRepository productRepo) {
+    ProductViewController(ProductRepository productRepo, OrderRepository orderRepo) {
+        this.orderRepo = orderRepo;
         this.productRepo = productRepo;
     }
 
@@ -37,9 +40,19 @@ public class ProductViewController {
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable Long id, Model model){
-        productRepo.deleteById(id);
-        return getAllProducts(model);
+    public String deleteCategory(@PathVariable Long id, Model model) {
+        boolean foundProduct = orderRepo.findAll()
+                .stream()
+                .anyMatch(order -> order.getProducts().stream().anyMatch(product -> product.getId() == id));
+
+        if (foundProduct) {
+            model.addAttribute("message",
+                    "Product is present in active orders and can not be deleted.");
+            return "unsuccessful";
+        } else {
+            productRepo.deleteById(id);
+            return getAllProducts(model);
+        }
     }
 
     @PostMapping("/addProduct")
@@ -50,7 +63,8 @@ public class ProductViewController {
             productRepo.save(new Product(price.get(), name.get()));
             return getAllProducts(model);
         } else {
-            model.addAttribute("message", "Product could not be added, please try again with correct values");
+            model.addAttribute("message",
+                    "Product could not be added, please try again with correct values.");
             return "unsuccessful";
         }
     }

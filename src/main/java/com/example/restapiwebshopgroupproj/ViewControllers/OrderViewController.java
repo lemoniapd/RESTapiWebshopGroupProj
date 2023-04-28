@@ -1,4 +1,4 @@
-package com.example.restapiwebshopgroupproj.Controllers;
+package com.example.restapiwebshopgroupproj.ViewControllers;
 
 import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Orders;
@@ -44,7 +44,7 @@ public class OrderViewController {
 
     @RequestMapping("/delete/{id}")
     public String deleteOrder(@PathVariable Long id, Model model) {
-        productRepo.deleteById(id);
+        ordersRepo.deleteById(id);
         return getAllOrders(model);
     }
 

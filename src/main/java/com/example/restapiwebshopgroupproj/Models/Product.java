@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ManyToAny;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -17,11 +20,6 @@ public class Product {
     protected Long id;
     protected double price;
     protected String name;
-
-    /*@ManyToOne
-    @JoinColumn
-    @JsonIgnore
-    protected Orders orders;*/
 
     public Product(double price, String name) {
         this.price = price;
