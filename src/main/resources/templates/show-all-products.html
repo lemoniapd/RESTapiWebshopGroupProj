@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<title>All products</title>
+</head>
+<body>
+<h1 th:text='${title}'></h1>
+<h2 th:text='${name}' th:unless="${#lists.isEmpty(products)}"></h2>
+<table>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td><a th:href="@{/products/delete/{id}(id=${product.id})}">Delete product</a></td>
+
+    </tr>
+</table>
+</body>
+</html>
