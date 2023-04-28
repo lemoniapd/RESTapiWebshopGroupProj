@@ -1,6 +1,8 @@
 package com.example.restapiwebshopgroupproj.Controllers;
 
+import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Product;
+import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
 import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,10 @@ import java.util.Optional;
 @RequestMapping("/products")
 public class CustomerViewController {
 
-    private final ProductRepository productRepo;
+    private final CustomerRepository customerRepo;
 
-    CustomerViewController(ProductRepository productRepo) {
-        this.productRepo = productRepo;
+    public CustomerViewController(CustomerRepository customerRepo) {
+        this.customerRepo = customerRepo;
     }
 
     @RequestMapping("/all")
@@ -33,7 +35,7 @@ public class CustomerViewController {
 
     @RequestMapping("/add")
     public String addByForm() {
-        return "add-product";
+        return "add-customer";
     }
 
     @RequestMapping("/delete/{id}")
@@ -42,15 +44,15 @@ public class CustomerViewController {
         return getAllProducts(model);
     }
 
-    @PostMapping("/addProduct")
-    public String addProduct(@RequestParam Optional<String> name,
-                             @RequestParam Optional<Double> price,
+    @PostMapping("/addCustomer")
+    public String addCustomer(@RequestParam String name,
+                             @RequestParam String socSecNum,
                              Model model) {
         if (name.isPresent() && price.isPresent()) {
             productRepo.save(new Product(price.get(), name.get()));
             return getAllProducts(model);
         } else {
-            model.addAttribute("message", "Product could not be added, please try again with correct values");
+            model.addAttribute("message", "Customer could not be added, please try again with correct values.");
             return "unsuccessful";
         }
     }
