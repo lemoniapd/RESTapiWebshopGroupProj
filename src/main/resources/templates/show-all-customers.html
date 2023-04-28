@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All customers</title>
+</head>
+<body>
+<h1 th:text='${title}'></h1>
+<h2 th:text='${name}' th:unless="${#lists.isEmpty(customers)}"></h2>
+<table>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.socSecNr}"></td>
+        <td><a th:href="@{/customersView/delete/{id}(id=${customer.id})}">Delete customer</a></td>
+    </tr>
+</table>
+</body>
+</html>

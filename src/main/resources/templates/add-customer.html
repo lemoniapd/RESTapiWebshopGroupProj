@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add customer</title>
+</head>
+<body>
+<h1 th:text='${title}'></h1>
+<form action="#" th:action="@{/customersView/addCustomer}" th:object="${customers}" method="post">
+  <label for="name">Customer name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="socSecNum">Customer social security number:</label><br>
+  <input type="text" id="socSecNum" name="socSecNum"><br>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
