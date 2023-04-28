@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add new order</title>
+</head>
+<body>
+<h1 th:text='${title}'></h1>
+<form action="#" th:action="@{/ordersView/addOrder}" th:object="${orders}" method="post">
+  <label for="customerID">Customer ID:</label><br>
+  <input type="number" id="customerID" name="customerID"><br>
+  <label for="productID">Product ID:</label><br>
+  <input type="number" id="productID" name="productID"><br>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>

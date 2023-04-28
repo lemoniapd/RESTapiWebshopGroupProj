@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -35,4 +36,14 @@ public class Orders {
         this.customer = customer;
         this.products = products;
     }
+    */
+
+
+
+    public Orders(Date date, Customer customer, List<Product> products) {
+        this.date = date;
+        this.customer = customer;
+        this.products = products;
+    }
+
 }

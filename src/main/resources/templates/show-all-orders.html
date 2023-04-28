@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All orders</title>
+</head>
+<body>
+<h1 th:text='${title}'></h1>
+<h2 th:text='${name}' th:unless="${#lists.isEmpty(ordersList)}"></h2>
+<table>
+    <tbody>
+    <tr th:each="o : ${ordersList}">
+        <td th:text="${o.getId()}"></td>
+        <td th:text="${o.getDate()}"></td>
+        <td th:text="${o.customer.getName()}"></td>
+<table>
+    <tbody>
+    <tr th:each="p : ${o.getProducts()}">
+        <td th:text="${p.getName()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+        <!-- <td th:text="${o.products.iterator().getClass().getName()}"></td>
+     <tr th:each="p : ${o.products}">
+             <td th:text="${p.name}"></td>
+         <td th:text="${p.price}"></td>
+
+     </tr>-->
+
+        <td><a th:href="@{/ordersView/delete/{id}(id=${o.id})}">Delete order</a></td><br><br>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
