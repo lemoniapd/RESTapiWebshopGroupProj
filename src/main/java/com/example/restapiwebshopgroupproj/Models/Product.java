@@ -1,6 +1,5 @@
 package com.example.restapiwebshopgroupproj.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

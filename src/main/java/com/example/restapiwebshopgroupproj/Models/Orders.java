@@ -21,14 +21,12 @@ public class Orders {
     protected Long id;
     protected Date date;
 
-    @ManyToOne
+    @ManyToOne 
     @JoinColumn
     @JsonIgnore
     protected Customer customer;
 
-    @OneToMany (fetch = FetchType.EAGER)
-    //mappedBy = "orders"
-    @JoinColumn
+    @ManyToMany (fetch = FetchType.EAGER)
     protected List<Product> products;
 
     public Orders(Date date, Customer customer, List<Product> products) {

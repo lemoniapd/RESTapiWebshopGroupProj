@@ -17,9 +17,12 @@ import java.util.List;
 public class CustomerViewController {
 
     private final CustomerRepository customerRepo;
+    private final OrderRepository orderRepo;
 
-    public CustomerViewController(CustomerRepository customerRepo) {
+    public CustomerViewController(CustomerRepository customerRepo, OrderRepository orderRepo) {
         this.customerRepo = customerRepo;
+        this.orderRepo = orderRepo;
+
     }
 
     @RequestMapping("/all")

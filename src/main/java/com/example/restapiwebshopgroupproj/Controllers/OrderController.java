@@ -26,8 +26,8 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
-    /*
-    @RequestMapping("/orders/{id}")
+
+    @RequestMapping("/orders/orderById/{id}")
     public Orders getOrderById(@PathVariable Long id){
         return orderRepo.findById(id).get();
     }
