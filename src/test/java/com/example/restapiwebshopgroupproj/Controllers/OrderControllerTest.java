@@ -3,7 +3,7 @@ package com.example.restapiwebshopgroupproj.Controllers;
 import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Orders;
 import com.example.restapiwebshopgroupproj.Models.Product;
-import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
+import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class OrderControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    CustomerRepository customerRepo;
+    OrderRepository orderRepository;
 
     @BeforeEach
     public void init() {
