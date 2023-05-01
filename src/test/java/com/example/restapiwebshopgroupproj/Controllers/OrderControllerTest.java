@@ -66,9 +66,7 @@ class OrderControllerTest {
                 .andExpect(content().json(new ObjectMapper().writeValueAsString(ordersToCompare)));
     }
 
-
     @Test
-//FUNKAR
     void getOrderByIdTest() throws Exception {
         this.mockMvc.perform(get("/orders/orderById/" + 1L))
                 .andExpect(status().isOk())
@@ -77,7 +75,8 @@ class OrderControllerTest {
                                 .writeValueAsString(o1)));
     }
 
-    @Test //Unparsable JSON string: org.json.JSONException: Unparsable JSON string:
+    @Test
+        //TODO, fråga Sigrun: Unparsable JSON string: org.json.JSONException: Unparsable JSON string:
     void getOrderByCustomerIdTest() throws Exception {
        this.mockMvc.perform(get("/orders/" + 1L))
                 .andExpect(status().isOk())

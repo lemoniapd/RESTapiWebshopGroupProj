@@ -85,7 +85,7 @@ class ProductControllerTest {
     @Test
     void buyProduct() throws Exception {
         /*
-        Fråga Sigrun om: "Error message = Required parameter 'productId' is not present."
+        TODO, Fråga Sigrun om: "Error message = Required parameter 'productId' is not present."
         this.mockMvc.perform(post("/items/buy").contentType(MediaType.APPLICATION_JSON)
                 .content("{\"productId\": 1,\"customerId\": 1}"))
                 .andExpect(status().isOk())
