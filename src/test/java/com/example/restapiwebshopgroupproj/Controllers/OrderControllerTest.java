@@ -48,12 +48,7 @@ class OrderControllerTest {
     }
 
     @Test
-    void getAllOrders() throws Exception {
-        Customer c1 = new Customer(1L, "Peter", "1234567");
-        Product p1 = new Product(1L, 10.9, "Sytråd röd");
-        Orders o1 = new Orders(1L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        Orders o2 = new Orders(2L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        Orders o3 = new Orders(3L, new Date(2023 - 05 - 01), c1, List.of(p1));
+    void getAllOrdersTest() throws Exception {
         List<Orders> ordersToCompare = Arrays.asList(o1, o2, o3);
         mockMvc.perform(get("/orders"))
                 .andExpect(status().isOk())
