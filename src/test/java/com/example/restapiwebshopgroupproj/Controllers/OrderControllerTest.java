@@ -40,12 +40,12 @@ class OrderControllerTest {
         Customer c1 = new Customer(1L, "Peter", "1234567");
         Product p1 = new Product(1L, 10.9, "Sytråd röd");
         Orders o1 = new Orders(1L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        Orders o2 = new Orders(1L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        Orders o3 = new Orders(1L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        when(customerRepo.findById(1L)).thenReturn(Optional.of(o1));
-        when(customerRepo.findById(2L)).thenReturn(Optional.of(o2));
-        when(customerRepo.findById(3L)).thenReturn(Optional.of(o3));
-        when(customerRepo.findAll()).thenReturn(Arrays.asList(o1, o2, o3));
+        Orders o2 = new Orders(2L, new Date(2023 - 05 - 01), c1, List.of(p1));
+        Orders o3 = new Orders(3L, new Date(2023 - 05 - 01), c1, List.of(p1));
+        when(orderRepository.findById(1L)).thenReturn(Optional.of(o1));
+        when(orderRepository.findById(2L)).thenReturn(Optional.of(o2));
+        when(orderRepository.findById(3L)).thenReturn(Optional.of(o3));
+        when(orderRepository.findAll()).thenReturn(Arrays.asList(o1, o2, o3));
     }
 
     @Test
@@ -65,7 +65,10 @@ class OrderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         new ObjectMapper()
-                                .writeValueAsString(new Orders(Date(2023 - 05 - 01), ))));
+                                .writeValueAsString(new Orders(
+                                        new Date(2023 - 05 - 01),
+                                        new Customer(1L, "Peter", "1234567"),
+                                        List.of(new Product(1L,10.9, "Sytråd röd"))))));
     }
 
     @Test
