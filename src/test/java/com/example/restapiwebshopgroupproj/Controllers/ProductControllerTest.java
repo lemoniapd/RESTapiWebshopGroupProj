@@ -60,7 +60,22 @@ class ProductControllerTest {
     }
 
     @Test
-    void getProductByIdTest() {
+    void getProductByIdTest() throws Exception {
+        this.mockMvc.perform(get("/items/" + 1L)).andExpect(content().json(
+                new ObjectMapper().writeValueAsString(new Product(
+                        1L,
+                        10.9,
+                        "Sytråd röd"))));
+        this.mockMvc.perform(get("/items/" + 2L)).andExpect(content().json(
+                new ObjectMapper().writeValueAsString(new Product(
+                        2L,
+                        499.0,
+                        "Billig symaskin"))));
+        this.mockMvc.perform(get("/items/" + 3L)).andExpect(content().json(
+                new ObjectMapper().writeValueAsString(new Product(
+                        3L,
+                        1200,
+                        "Guldtråd"))));
     }
 
     @Test

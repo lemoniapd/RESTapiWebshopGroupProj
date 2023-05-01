@@ -62,6 +62,27 @@ class OrderControllerTest {
     }
 
     @Test
-    void getOrderByCustomerId() {
+    void getOrderByCustomerId() throws Exception {
+        this.mockMvc.perform(get("/orders/" + 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().json(new ObjectMapper().writeValueAsString(new Orders(
+                        new Date(2023 - 05 - 01),
+                        new Customer(1L, "Peter", "1234567"),
+                        List.of(new Product(1L, 10.9, "Sytråd röd"))
+                ))));
+        this.mockMvc.perform(get("/orders/" + 2L))
+                .andExpect(status().isOk())
+                .andExpect(content().json(new ObjectMapper().writeValueAsString(new Orders(
+                        new Date(2023 - 05 - 01),
+                        new Customer(1L, "Peter", "1234567"),
+                        List.of(new Product(1L, 10.9, "Sytråd röd"))
+                ))));
+        this.mockMvc.perform(get("/orders/" + 3L))
+                .andExpect(status().isOk())
+                .andExpect(content().json(new ObjectMapper().writeValueAsString(new Orders(
+                        new Date(2023 - 05 - 01),
+                        new Customer(1L, "Peter", "1234567"),
+                        List.of(new Product(1L, 10.9, "Sytråd röd"))
+                ))));
     }
 }
