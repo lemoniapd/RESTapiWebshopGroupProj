@@ -30,21 +30,32 @@ class OrderControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+    Customer c1;
+    Orders o1;
+    Orders o2;
+    Orders o3;
+    Product p1;
+
 
     @MockBean
-    OrderRepository orderRepository;
+    OrderRepository orderRepoTest;
+    @MockBean
+    CustomerRepository customerRepoTest;
 
     @BeforeEach
     public void init() {
-        Customer c1 = new Customer(1L, "Peter", "1234567");
-        Product p1 = new Product(1L, 10.9, "Sytråd röd");
-        Orders o1 = new Orders(1L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        Orders o2 = new Orders(2L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        Orders o3 = new Orders(3L, new Date(2023 - 05 - 01), c1, List.of(p1));
-        when(orderRepository.findById(1L)).thenReturn(Optional.of(o1));
-        when(orderRepository.findById(2L)).thenReturn(Optional.of(o2));
-        when(orderRepository.findById(3L)).thenReturn(Optional.of(o3));
-        when(orderRepository.findAll()).thenReturn(Arrays.asList(o1, o2, o3));
+        c1 = new Customer(1L, "Peter", "1234567");
+        when(customerRepoTest.findById(1L)).thenReturn(Optional.of(c1));
+
+        p1 = new Product(1L, 10.9, "Sytråd röd");
+        o1 = new Orders(1L, c1, List.of(p1));
+        o2 = new Orders(2L, c1, List.of(p1));
+        o3 = new Orders(3L, c1, List.of(p1));
+
+        when(orderRepoTest.findById(1L)).thenReturn(Optional.of(o1));
+        when(orderRepoTest.findById(2L)).thenReturn(Optional.of(o2));
+        when(orderRepoTest.findById(3L)).thenReturn(Optional.of(o3));
+        when(orderRepoTest.findAll()).thenReturn(Arrays.asList(o1, o2, o3));
     }
 
     @Test

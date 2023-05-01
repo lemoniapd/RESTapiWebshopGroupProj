@@ -38,4 +38,13 @@ public class Orders {
         this.customer = customer;
         this.products = products;
     }
+    public Orders(Long id, Customer customer, List<Product> products) {
+        this.id = id;
+        this.customer = customer;
+        this.products = products;
+    }
+    public Orders(Long id, List<Product> products) {
+        this.id = id;
+        this.products = products;
+    }
 }
