@@ -1,8 +1,6 @@
 package com.example.restapiwebshopgroupproj.Controllers;
 
-import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Product;
-import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
 import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,14 +16,11 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc

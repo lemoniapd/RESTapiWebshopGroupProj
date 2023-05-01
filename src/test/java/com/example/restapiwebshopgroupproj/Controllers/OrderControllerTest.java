@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -50,6 +49,12 @@ class OrderControllerTest {
 
     @Test
     void getAllOrders() throws Exception {
+        Customer c1 = new Customer(1L, "Peter", "1234567");
+        Product p1 = new Product(1L, 10.9, "Sytråd röd");
+        Orders o1 = new Orders(1L, new Date(2023 - 05 - 01), c1, List.of(p1));
+        Orders o2 = new Orders(2L, new Date(2023 - 05 - 01), c1, List.of(p1));
+        Orders o3 = new Orders(3L, new Date(2023 - 05 - 01), c1, List.of(p1));
+        List<Orders> ordersToCompare = Arrays.asList(o1, o2, o3);
         this.mockMvc.perform(get("/orders/"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
