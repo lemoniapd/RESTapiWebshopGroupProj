@@ -59,8 +59,18 @@ class OrderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         new ObjectMapper()
-                                .writeValueAsString()
+                                .writeValueAsString(
+                                        List.of(new Orders(1L, new Date(2023 - 05 - 01),
+                                                new Customer(1L, "Peter","1234567"),
+                                                List.of(new Product(1L,10.9, "Sytråd röd"))),
+                                                new Orders(2L,new Date(2023-05-01),
 
+                                                        new Customer(1L, "Peter","1234567"),
+                                                        List.of(new Product(1L,10.9, "Sytråd röd"))),
+
+                                        new Orders(3L,new Date(2023-05-01),
+                                                new Customer(1L, "Peter","1234567"),
+                                                List.of(new Product(1L,10.9, "Sytråd röd")))))));
 
     }
 
