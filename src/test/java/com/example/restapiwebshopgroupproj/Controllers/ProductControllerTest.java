@@ -41,7 +41,6 @@ class ProductControllerTest {
         when(productRepo.findById(2L)).thenReturn(Optional.of(p2));
         when(productRepo.findById(3L)).thenReturn(Optional.of(p3));
         when(productRepo.findAll()).thenReturn(Arrays.asList(p1, p2, p3));
-
     }
 
     @Test

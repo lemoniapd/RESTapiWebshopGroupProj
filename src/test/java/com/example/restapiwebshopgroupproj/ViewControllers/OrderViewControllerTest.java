@@ -33,14 +33,20 @@ class OrderViewControllerTest {
     }
 
     @Test
-    void deleteOrder() {
+    void deleteOrderTest() throws Exception{
+        this.mockMvc.perform(get("/ordersView/delete/"+1L))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void addByForm() {
+    void addByFormTest() throws Exception{
+        this.mockMvc.perform(get("/ordersView/add"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void addOrder() {
+    void addOrderTest() throws Exception {
+        this.mockMvc.perform(post("/ordersView/addOrder?customerID=1&productID=1"))
+                .andExpect(status().isOk());
     }
 }

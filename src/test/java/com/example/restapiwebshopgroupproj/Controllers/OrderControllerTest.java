@@ -3,6 +3,7 @@ package com.example.restapiwebshopgroupproj.Controllers;
 import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Orders;
 import com.example.restapiwebshopgroupproj.Models.Product;
+import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
 import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +62,8 @@ class OrderControllerTest {
 
 
     @Test
-    void getOrderById() throws Exception {
+//FUNKAR
+    void getOrderByIdTest() throws Exception {
         this.mockMvc.perform(get("/orders/orderById/" + 1L))
                 .andExpect(status().isOk())
                 .andExpect(content().json(

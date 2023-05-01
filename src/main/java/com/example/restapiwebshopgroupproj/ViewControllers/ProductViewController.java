@@ -40,7 +40,7 @@ public class ProductViewController {
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable Long id, Model model) {
+    public String deleteProduct(@PathVariable Long id, Model model) {
         boolean foundProduct = orderRepo.findAll()
                 .stream()
                 .anyMatch(order -> order.getProducts().stream().anyMatch(product -> product.getId() == id));

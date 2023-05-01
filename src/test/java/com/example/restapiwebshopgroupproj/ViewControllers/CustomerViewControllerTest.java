@@ -22,19 +22,44 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class CustomerViewControllerTest {
 
-    @Test
-    void getAllCustomers() {
+    @Autowired
+    MockMvc mockMvc;
+
+    @MockBean
+    CustomerRepository customerRepo;
+
+    @BeforeEach
+    public void init() {
+        Customer c1 = new Customer(1L, "Peter", "1234567");
+        Customer c2 = new Customer(2L, "Lisa", "7654321");
+        Customer c3 = new Customer(3L, "Lemonia", "2345678");
+        when(customerRepo.findById(1L)).thenReturn(Optional.of(c1));
+        when(customerRepo.findById(2L)).thenReturn(Optional.of(c2));
+        when(customerRepo.findById(3L)).thenReturn(Optional.of(c3));
+        when(customerRepo.findAll()).thenReturn(Arrays.asList(c1, c2, c3));
     }
 
     @Test
-    void addByForm() {
+    void getAllCustomersTest() throws Exception {
+        this.mockMvc.perform(get("/customersView/all"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void deleteCustomer() {
+    void addByFormTest() throws Exception {
+        this.mockMvc.perform(get("/customersView/add"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void addCustomer() {
+    void deleteCustomerTest() throws Exception {
+        this.mockMvc.perform(get("/customersView/delete/" + 1L))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void addCustomerTest() throws Exception {
+        this.mockMvc.perform(post("/customersView/addCustomer?name=LisaFisa&socSecNum=000"))
+                .andExpect(status().isOk());
     }
 }

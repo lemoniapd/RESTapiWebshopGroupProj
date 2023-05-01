@@ -1,9 +1,7 @@
 package com.example.restapiwebshopgroupproj.Controllers;
 
 import com.example.restapiwebshopgroupproj.Models.Customer;
-import com.example.restapiwebshopgroupproj.Models.Product;
 import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
-import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +19,18 @@ public class CustomerController {
     }
 
     @RequestMapping("/customers")
-    public List<Customer> getAllCustomers(){
+    public List<Customer> getAllCustomers() {
         return customerRepo.findAll();
     }
 
     @RequestMapping("/customers/{id}")
-    public Customer getCustomerById(@PathVariable Long id){
+    public Customer getCustomerById(@PathVariable Long id) {
 
         return customerRepo.findById(id).orElse(null);
     }
 
     @RequestMapping("customers/delete/{id}")
-    public String deleteCustomer(@PathVariable Long id){
+    public String deleteCustomer(@PathVariable Long id) {
         customerRepo.deleteById(id);
         return "Customer " + id + " deleted";
     }
@@ -42,13 +40,8 @@ public class CustomerController {
         try {
             customerRepo.save(customer);
             return "Customer " + customer.getName() + " added";
-        } catch (Exception e){
+        } catch (Exception e) {
             return "Something went wrong when trying to add customer!";
         }
     }
-
-
-
-
-
 }
