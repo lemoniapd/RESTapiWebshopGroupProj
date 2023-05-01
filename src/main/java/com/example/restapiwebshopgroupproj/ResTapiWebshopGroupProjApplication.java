@@ -22,6 +22,7 @@ public class ResTapiWebshopGroupProjApplication {
         SpringApplication.run(ResTapiWebshopGroupProjApplication.class, args);
     }
 
+    /*
     @Bean
     public CommandLineRunner demo(CustomerRepository customerRepo, ProductRepository productRepository, OrderRepository orderRepository) {
         return (args) -> {
@@ -60,12 +61,5 @@ public class ResTapiWebshopGroupProjApplication {
 
         };
     }
-
-
-
-
-
-
-
-
+     */
 }
