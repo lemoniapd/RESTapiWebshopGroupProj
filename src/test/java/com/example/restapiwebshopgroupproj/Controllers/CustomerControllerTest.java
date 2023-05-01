@@ -46,10 +46,12 @@ class CustomerControllerTest {
 
     @Test
     public void getAllCustomersTest() throws Exception {
-        this.mockMvc.perform(get("/customers")).andExpect(status().isOk()).andExpect(content().json(
-                "[{\"id\":1,\"name\": \"Peter\",\"socSecNr\":\"1234567\"}" +
-                        ",{\"id\":2,\"name\": \"Lisa\",\"socSecNr\":\"7654321\"}" +
-                        ", {\"id\":3,\"name\": \"Lemonia\",\"socSecNr\":\"2345678\"}]"));
+        this.mockMvc.perform(get("/customers"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        "[{\"id\":1,\"name\": \"Peter\",\"socSecNr\":\"1234567\"}" +
+                                ",{\"id\":2,\"name\": \"Lisa\",\"socSecNr\":\"7654321\"}" +
+                                ", {\"id\":3,\"name\": \"Lemonia\",\"socSecNr\":\"2345678\"}]"));
     }
 
     @Test

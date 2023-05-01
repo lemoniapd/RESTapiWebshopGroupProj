@@ -55,24 +55,11 @@ class OrderControllerTest {
         Orders o2 = new Orders(2L, new Date(2023 - 05 - 01), c1, List.of(p1));
         Orders o3 = new Orders(3L, new Date(2023 - 05 - 01), c1, List.of(p1));
         List<Orders> ordersToCompare = Arrays.asList(o1, o2, o3);
-        this.mockMvc.perform(get("/orders/"))
+        mockMvc.perform(get("/orders"))
                 .andExpect(status().isOk())
-                .andExpect(content().json(
-                        new ObjectMapper()
-                                .writeValueAsString(
-                                        List.of(new Orders(1L, new Date(2023 - 05 - 01),
-                                                new Customer(1L, "Peter","1234567"),
-                                                List.of(new Product(1L,10.9, "Sytråd röd"))),
-                                                new Orders(2L,new Date(2023-05-01),
-
-                                                        new Customer(1L, "Peter","1234567"),
-                                                        List.of(new Product(1L,10.9, "Sytråd röd"))),
-
-                                        new Orders(3L,new Date(2023-05-01),
-                                                new Customer(1L, "Peter","1234567"),
-                                                List.of(new Product(1L,10.9, "Sytråd röd")))))));
-
+                .andExpect(content().json(new ObjectMapper().writeValueAsString(ordersToCompare)));
     }
+
 
     @Test
     void getOrderById() throws Exception {
@@ -80,34 +67,55 @@ class OrderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         new ObjectMapper()
-                                .writeValueAsString(new Orders(
-                                        new Date(2023 - 05 - 01),
-                                        new Customer(1L, "Peter", "1234567"),
-                                        List.of(new Product(1L,10.9, "Sytråd röd"))))));
+                                .writeValueAsString(o1)));
     }
 
-    @Test
-    void getOrderByCustomerId() throws Exception {
+    @Test //Unparsable JSON string: org.json.JSONException: Unparsable JSON string:
+    void getOrderByCustomerIdTest() throws Exception {
+       this.mockMvc.perform(get("/orders/" + 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().json(new ObjectMapper().writeValueAsString(c1.getOrders())));
+    }
+
+    //order id , orderdatum, produktlista(produktid, produktnamn,pris)
+    /*
+
+
+    "[{\"id\": 1,\"date\": null,\"products\": [{\"id\" :1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}, " +
+                                "{\"id\": 2, \"date\": null,\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}, " +
+                                "{\"id\": 3,\"date\": null,\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}]"
+
+     //List<Orders> ordersToCompare = new List<Orders>;
+     Order o1 = new Orders(1L, List.of(p1));
+     Order o2 = new Orders(2L, List.of(p1));
+     Order o3 = new Orders(3L, List.of(p1));
+     ordersToCompare.add(o1);
+     ordersToCompare.add(o2);
+     ordersToCompare.add(o);
+
+     Tobi
+     Customer currentCustomer = customerRepoTest.findById(1L).orElse(null);
         this.mockMvc.perform(get("/orders/" + 1L))
                 .andExpect(status().isOk())
-                .andExpect(content().json(new ObjectMapper().writeValueAsString(new Orders(
-                        new Date(2023 - 05 - 01),
-                        new Customer(1L, "Peter", "1234567"),
-                        List.of(new Product(1L, 10.9, "Sytråd röd"))
-                ))));
-        this.mockMvc.perform(get("/orders/" + 2L))
+                .andExpect(content().json(new ObjectMapper()
+                        currentCustomer.getOrders()));
+
+       this.mockMvc.perform(get("/orders/" + 1L))
                 .andExpect(status().isOk())
-                .andExpect(content().json(new ObjectMapper().writeValueAsString(new Orders(
-                        new Date(2023 - 05 - 01),
-                        new Customer(1L, "Peter", "1234567"),
-                        List.of(new Product(1L, 10.9, "Sytråd röd"))
-                ))));
-        this.mockMvc.perform(get("/orders/" + 3L))
+                .andExpect(content().json(new ObjectMapper().writeValueAsString(ordersToCompare)));
+
+     Customer currentCustomer = customerRepo.findById(1L).orElse(null);
+     this.mockMvc.perform(get("/orders/" + 1L))
                 .andExpect(status().isOk())
-                .andExpect(content().json(new ObjectMapper().writeValueAsString(new Orders(
-                        new Date(2023 - 05 - 01),
-                        new Customer(1L, "Peter", "1234567"),
-                        List.of(new Product(1L, 10.9, "Sytråd röd"))
-                ))));
+                .andExpect(content().json(currentCustomer.getOrders())));
+
+
+        this.mockMvc.perform(get("/orders"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[{\"id\": 1,\"date\": null,\"customer\": {\"id\": 1, \"name\": \"Peter\", \"socSecNr\": \"1234567\",\"orders\": null},\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}"
+                + "{\"id\": 2,\"date\": null,\"customer\": {\"id\": 1,\"name\": \"Peter\",\"socSecNr\": \"1234567\",\"orders\": null},\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}"
+                + "{\"id\": 3,\"date\": null,\"customer\": {\"id\": 1,\"name\": \"Peter\",\"socSecNr\": \"1234567\",\"orders\": null"},\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}]"));
     }
+
+     */
 }
