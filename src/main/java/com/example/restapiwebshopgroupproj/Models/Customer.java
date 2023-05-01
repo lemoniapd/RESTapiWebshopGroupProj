@@ -25,4 +25,10 @@ public class Customer {
         this.name = name;
         this.socSecNr = socSecNr;
     }
+    public Customer(Long id, String name, String socSecNr) {
+        this.id = id;
+        this.name = name;
+        this.socSecNr = socSecNr;
+    }
+
 }
