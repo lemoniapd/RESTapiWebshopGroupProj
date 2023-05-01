@@ -31,7 +31,6 @@ class OrderControllerTest {
     @MockBean
     CustomerRepository customerRepo;
 
-    /*
     @BeforeEach
     public void init() {
         Customer c1 = new Customer(1L, "Peter", "1234567");
@@ -54,7 +53,12 @@ class OrderControllerTest {
     }
 
     @Test
-    void getOrderById() {
+    void getOrderById() throws Exception {
+        this.mockMvc.perform(get("/orders/orderById/" + 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        new ObjectMapper()
+                                .writeValueAsString(new Orders(Date(2023 - 05 - 01), ))));
     }
 
     @Test
