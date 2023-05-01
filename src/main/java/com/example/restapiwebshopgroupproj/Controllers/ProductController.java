@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @PostMapping("/items/buy")
-    public String buyProduct(@RequestParam Long productId, @RequestParam Long customerId) {
+    public String buyProduct(@RequestParam("productId") Long productId, @RequestParam("customerId") Long customerId) {
         List<Product> products = new ArrayList<>();
         Product product = productRepo.findById(productId).orElse(null);
         Customer customer = customerRepo.findById(customerId).orElse(null);

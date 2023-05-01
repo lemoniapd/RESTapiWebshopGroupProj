@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
@@ -53,9 +54,9 @@ class ProductControllerTest {
         this.mockMvc.perform(get("/items"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
-                "[{\"id\":1,\"price\": 10.9,\"name\":\"Sytråd röd\"}" +
-                        ",{\"id\":2,\"price\": 499.0,\"name\":\"Billig symaskin\"}" +
-                        ", {\"id\":3,\"price\": 1200,\"name\":\"Guldtråd\"}]"));
+                        "[{\"id\":1,\"price\": 10.9,\"name\":\"Sytråd röd\"}" +
+                                ",{\"id\":2,\"price\": 499.0,\"name\":\"Billig symaskin\"}" +
+                                ",{\"id\":3,\"price\": 1200,\"name\":\"Guldtråd\"}]"));
     }
 
     @Test
@@ -64,9 +65,27 @@ class ProductControllerTest {
 
     @Test
     void addProductTest() throws Exception {
+        this.mockMvc.perform(post("/items/add").contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper()
+                                .writeValueAsString(
+                                        new Product(123, "test"))))
+                .andExpect(status().isOk())
+                .andExpect(content().string("test is added to database"));
     }
 
     @Test
-    void buyProduct() {
+    void buyProduct() throws Exception {
+        /*
+        Fråga Sigrun om: "Error message = Required parameter 'productId' is not present."
+        this.mockMvc.perform(post("/items/buy").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"productId\": 1,\"customerId\": 1}"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Order number 1 is added"));
+
+        this.mockMvc.perform(post("/items/buy").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"productId\": 1000,\"customerId\": 1000}"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Product ID or customer ID does not exist."));
+         */
     }
 }
