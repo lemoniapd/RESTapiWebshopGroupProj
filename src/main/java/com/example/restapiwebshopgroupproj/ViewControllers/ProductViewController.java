@@ -50,6 +50,7 @@ public class ProductViewController {
                     "Product is present in active orders and can not be deleted.");
             return "unsuccessful";
         } else {
+            System.out.println("försöker deleta");
             productRepo.deleteById(id);
             return getAllProducts(model);
         }

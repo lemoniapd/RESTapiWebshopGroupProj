@@ -1,25 +1,13 @@
 package com.example.restapiwebshopgroupproj;
 
-import com.example.restapiwebshopgroupproj.Models.Customer;
-import com.example.restapiwebshopgroupproj.Models.Orders;
-import com.example.restapiwebshopgroupproj.Models.Product;
-import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
-import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
-import com.example.restapiwebshopgroupproj.Repositories.ProductRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication
-public class ResTapiWebshopGroupProjApplication {
+public class RestApiWebshopGroupProjApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ResTapiWebshopGroupProjApplication.class, args);
+        SpringApplication.run(RestApiWebshopGroupProjApplication.class, args);
     }
 
 /*
@@ -63,5 +51,7 @@ public class ResTapiWebshopGroupProjApplication {
     }
 
  */
+
+
 
 }

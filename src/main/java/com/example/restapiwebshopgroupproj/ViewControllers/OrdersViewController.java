@@ -20,13 +20,13 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/ordersView")
-public class OrderViewController {
+public class OrdersViewController {
 
     private final OrderRepository ordersRepo;
     private final CustomerRepository customerRepo;
     private final ProductRepository productRepo;
 
-    public OrderViewController(OrderRepository ordersRepo, CustomerRepository customerRepo, ProductRepository productRepo) {
+    public OrdersViewController(OrderRepository ordersRepo, CustomerRepository customerRepo, ProductRepository productRepo) {
         this.ordersRepo = ordersRepo;
         this.customerRepo = customerRepo;
         this.productRepo = productRepo;
