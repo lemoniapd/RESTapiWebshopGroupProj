@@ -26,7 +26,7 @@ public class ProductController {
         this.orderRepo = orderRepo;
     }
 
-    @RequestMapping("/items")
+    @RequestMapping("/all")
     public List<Product> getAllProducts() {
         return productRepo.findAll();
     }
@@ -46,7 +46,7 @@ public class ProductController {
         }
     }
 
-    @RequestMapping("/items/buy")
+    @RequestMapping("/buy")
     public String buyProduct(@RequestParam Long productId,
                              @RequestParam Long customerId) {
         List<Product> products = new ArrayList<>();

@@ -81,48 +81,4 @@ class OrderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(new ObjectMapper().writeValueAsString(ordersToCompare)));
     }
-
-
-
-    //order id , orderdatum, produktlista(produktid, produktnamn,pris)
-    /*
-
-
-    "[{\"id\": 1,\"date\": null,\"products\": [{\"id\" :1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}, " +
-                                "{\"id\": 2, \"date\": null,\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}, " +
-                                "{\"id\": 3,\"date\": null,\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}]"
-
-     //List<Orders> ordersToCompare = new List<Orders>;
-     Order o1 = new Orders(1L, List.of(p1));
-     Order o2 = new Orders(2L, List.of(p1));
-     Order o3 = new Orders(3L, List.of(p1));
-     ordersToCompare.add(o1);
-     ordersToCompare.add(o2);
-     ordersToCompare.add(o);
-
-     Tobi
-     Customer currentCustomer = customerRepoTest.findById(1L).orElse(null);
-        this.mockMvc.perform(get("/orders/" + 1L))
-                .andExpect(status().isOk())
-                .andExpect(content().json(new ObjectMapper()
-                        currentCustomer.getOrders()));
-
-       this.mockMvc.perform(get("/orders/" + 1L))
-                .andExpect(status().isOk())
-                .andExpect(content().json(new ObjectMapper().writeValueAsString(ordersToCompare)));
-
-     Customer currentCustomer = customerRepo.findById(1L).orElse(null);
-     this.mockMvc.perform(get("/orders/" + 1L))
-                .andExpect(status().isOk())
-                .andExpect(content().json(currentCustomer.getOrders())));
-
-
-        this.mockMvc.perform(get("/orders"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\": 1,\"date\": null,\"customer\": {\"id\": 1, \"name\": \"Peter\", \"socSecNr\": \"1234567\",\"orders\": null},\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}"
-                + "{\"id\": 2,\"date\": null,\"customer\": {\"id\": 1,\"name\": \"Peter\",\"socSecNr\": \"1234567\",\"orders\": null},\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}"
-                + "{\"id\": 3,\"date\": null,\"customer\": {\"id\": 1,\"name\": \"Peter\",\"socSecNr\": \"1234567\",\"orders\": null"},\"products\": [{\"id\": 1,\"price\": 10.9,\"name\": \"Sytråd röd\"}]}]"));
-    }
-
-     */
 }

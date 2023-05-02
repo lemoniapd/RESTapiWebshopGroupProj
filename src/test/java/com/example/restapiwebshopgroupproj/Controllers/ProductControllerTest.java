@@ -91,6 +91,5 @@ class ProductControllerTest {
         this.mockMvc.perform(get("/items/buy?productId=1000&customerId=1000"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Product ID or customer ID does not exist."));
-
     }
 }
