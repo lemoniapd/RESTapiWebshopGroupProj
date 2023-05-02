@@ -34,7 +34,7 @@ class OrdersViewControllerTest {
 
     @BeforeEach
     public void init() {
-       Customer c1 = new Customer(1L, "Peter", "1234567");
+        Customer c1 = new Customer(1L, "Peter", "1234567");
 
         Product p1 = new Product(1L, 10.9, "Sytråd röd");
         Orders o1 = new Orders(1L, new Date(), c1, List.of(p1));
@@ -48,8 +48,8 @@ class OrdersViewControllerTest {
     }
     @Test
     void getAllOrdersTest() throws Exception {
-    this.mockMvc.perform(get("/ordersView/all"))
-            .andExpect(status().isOk());
+        this.mockMvc.perform(get("/ordersView/all"))
+                .andExpect(status().isOk());
     }
 
     @Test

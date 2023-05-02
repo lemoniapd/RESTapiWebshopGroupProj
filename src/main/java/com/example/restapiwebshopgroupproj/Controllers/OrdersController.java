@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
-public class OrderController {
+public class OrdersController {
 
     private final OrderRepository orderRepo;
     private final CustomerRepository customerRepo;
 
-    public OrderController(OrderRepository orderRepo, CustomerRepository customerRepo) {
+    public OrdersController(OrderRepository orderRepo, CustomerRepository customerRepo) {
         this.orderRepo = orderRepo;
         this.customerRepo = customerRepo;
     }

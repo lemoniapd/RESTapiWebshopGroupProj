@@ -34,4 +34,3 @@ public class ProductControllerContextTest {
         assertThat(s).contains("Test is added to database");
     }
 }
-

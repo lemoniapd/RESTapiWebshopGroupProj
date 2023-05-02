@@ -25,8 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class OrderControllerTest {
-
+class OrdersControllerTest {
     @Autowired
     MockMvc mockMvc;
     Customer c1;
@@ -34,7 +33,6 @@ class OrderControllerTest {
     Orders o2;
     Orders o3;
     Product p1;
-
 
     @MockBean
     OrderRepository orderRepoTest;
