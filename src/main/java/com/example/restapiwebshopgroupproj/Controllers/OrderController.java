@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/orders")
 public class OrderController {
 
     private final OrderRepository orderRepo;
@@ -20,17 +21,17 @@ public class OrderController {
         this.customerRepo = customerRepo;
     }
 
-    @RequestMapping("/orders")
-    public List<Orders> getAllOrders(){
+    @RequestMapping("/all")
+    public List<Orders> getAllOrders() {
         return orderRepo.findAll();
     }
 
-    @RequestMapping("/orders/orderById/{id}")
-    public Orders getOrderById(@PathVariable Long id){
-        return orderRepo.findById(id).get();
+    @RequestMapping("/orderById/{id}")
+    public Orders getOrderById(@PathVariable Long id) {
+        return orderRepo.findById(id).orElse(null);
     }
 
-    @RequestMapping("/orders/{customerId}")
+    @RequestMapping("/{customerId}")
     public List<Orders> getOrderByCustomerId(@PathVariable Long customerId) {
         return orderRepo.findAll().stream()
                 .filter(e -> e.getCustomer().getId() == customerId).toList();

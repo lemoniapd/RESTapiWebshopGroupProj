@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -43,8 +42,8 @@ public class ProductViewController {
     public String deleteProduct(@PathVariable Long id, Model model) {
         boolean foundProduct = orderRepo.findAll()
                 .stream()
-                .anyMatch(order -> order.getProducts().stream().anyMatch(product -> product.getId() == id));
-
+                .anyMatch(order -> order.getProducts().stream()
+                        .anyMatch(product -> product.getId().equals(id)));
         if (foundProduct) {
             model.addAttribute("message",
                     "Product is present in active orders and can not be deleted.");

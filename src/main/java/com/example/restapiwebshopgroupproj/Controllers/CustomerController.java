@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/customers")
 public class CustomerController {
 
     private final CustomerRepository customerRepo;
@@ -18,24 +19,23 @@ public class CustomerController {
         this.customerRepo = customerRepo;
     }
 
-    @RequestMapping("/customers")
+    @RequestMapping("/all")
     public List<Customer> getAllCustomers() {
         return customerRepo.findAll();
     }
 
-    @RequestMapping("/customers/{id}")
+    @RequestMapping("/{id}")
     public Customer getCustomerById(@PathVariable Long id) {
-
         return customerRepo.findById(id).orElse(null);
     }
 
-    @RequestMapping("customers/delete/{id}")
+    @RequestMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable Long id) {
         customerRepo.deleteById(id);
         return "Customer " + id + " deleted";
     }
 
-    @PostMapping("/customers/add")
+    @PostMapping("/add")
     public String addCustomer(@RequestBody Customer customer) {
         try {
             customerRepo.save(customer);

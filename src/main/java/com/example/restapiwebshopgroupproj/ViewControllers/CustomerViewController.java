@@ -22,7 +22,6 @@ public class CustomerViewController {
     public CustomerViewController(CustomerRepository customerRepo, OrderRepository orderRepo) {
         this.customerRepo = customerRepo;
         this.orderRepo = orderRepo;
-
     }
 
     @RequestMapping("/all")

@@ -1,6 +1,5 @@
 package com.example.restapiwebshopgroupproj.Controllers;
 
-
 import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Orders;
 import com.example.restapiwebshopgroupproj.Models.Product;
@@ -14,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping("/items")
 public class ProductController {
 
     private final ProductRepository productRepo;
@@ -31,12 +31,12 @@ public class ProductController {
         return productRepo.findAll();
     }
 
-    @RequestMapping("/items/{id}")
+    @RequestMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {
         return productRepo.findById(id).orElse(null);
     }
 
-    @PostMapping("/items/add")
+    @PostMapping("/add")
     public String addProduct(@RequestBody Product product) {
         try {
             productRepo.save(product);
@@ -50,7 +50,6 @@ public class ProductController {
     public String buyProduct(@RequestParam Long productId,
                              @RequestParam Long customerId) {
         List<Product> products = new ArrayList<>();
-        System.out.println("hej");
 
         Product product = productRepo.findById(productId).orElse(null);
         Customer customer = customerRepo.findById(customerId).orElse(null);
@@ -61,8 +60,6 @@ public class ProductController {
             orderRepo.save(order);
             return "Order number " + order.getId() + " is added";
         }
-
-
         return "Product ID or customer ID does not exist.";
     }
 }
