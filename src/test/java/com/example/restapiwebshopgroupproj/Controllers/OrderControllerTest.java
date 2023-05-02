@@ -60,7 +60,7 @@ class OrderControllerTest {
     @Test
     public void getAllOrdersTest() throws Exception {
         List<Orders> ordersToCompare = Arrays.asList(o1, o2, o3);
-        mockMvc.perform(get("/orders"))
+        mockMvc.perform(get("/orders/all"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(new ObjectMapper().writeValueAsString(ordersToCompare)));
     }
