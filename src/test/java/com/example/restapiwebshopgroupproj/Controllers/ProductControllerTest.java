@@ -45,7 +45,7 @@ class ProductControllerTest {
 
     @Test
     public void getAllProductsTest() throws Exception {
-        this.mockMvc.perform(get("/items"))
+        this.mockMvc.perform(get("/items/all"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         "[{\"id\":1,\"price\": 10.9,\"name\":\"Sytråd röd\"}" +

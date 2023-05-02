@@ -46,7 +46,7 @@ class CustomerControllerTest {
 
     @Test
     public void getAllCustomersTest() throws Exception {
-        this.mockMvc.perform(get("/customers"))
+        this.mockMvc.perform(get("/customers/all"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         "[{\"id\":1,\"name\": \"Peter\",\"socSecNr\":\"1234567\"}" +
