@@ -18,8 +18,10 @@ public class Customer {
     protected String name;
     protected String socSecNr;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    /*@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     protected List<Orders> orders;
+
+     */
 
     public Customer(String name, String socSecNr) {
         this.name = name;

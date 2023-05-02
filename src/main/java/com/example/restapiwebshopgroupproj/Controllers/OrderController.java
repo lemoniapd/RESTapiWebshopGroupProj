@@ -1,6 +1,5 @@
 package com.example.restapiwebshopgroupproj.Controllers;
 
-import com.example.restapiwebshopgroupproj.Models.Customer;
 import com.example.restapiwebshopgroupproj.Models.Orders;
 import com.example.restapiwebshopgroupproj.Repositories.CustomerRepository;
 import com.example.restapiwebshopgroupproj.Repositories.OrderRepository;
@@ -26,20 +25,14 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
-
     @RequestMapping("/orders/orderById/{id}")
     public Orders getOrderById(@PathVariable Long id){
         return orderRepo.findById(id).get();
     }
 
-
     @RequestMapping("/orders/{customerId}")
-    public List<Orders> getOrderByCustomerId(@PathVariable Long customerId){
-        Customer currentCustomer = customerRepo.findById(customerId).orElse(null);
-    if (currentCustomer!=null){
-           return currentCustomer.getOrders();
+    public List<Orders> getOrderByCustomerId(@PathVariable Long customerId) {
+        return orderRepo.findAll().stream()
+                .filter(e -> e.getCustomer().getId() == customerId).toList();
     }
-    return null;
-    }
-
 }

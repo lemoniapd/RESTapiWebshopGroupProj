@@ -23,7 +23,7 @@ public class Orders {
 
     @ManyToOne 
     @JoinColumn
-    @JsonIgnore
+    //@JsonIgnore
     protected Customer customer;
 
     @ManyToMany (fetch = FetchType.EAGER)

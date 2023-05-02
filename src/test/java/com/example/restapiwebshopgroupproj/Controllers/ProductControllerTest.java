@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Arrays;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -44,7 +46,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void getAllProductsTest() throws Exception {
+    public void getAllProductsTest() throws Exception {
         this.mockMvc.perform(get("/items"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
@@ -54,7 +56,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void getProductByIdTest() throws Exception {
+    public void getProductByIdTest() throws Exception {
         this.mockMvc.perform(get("/items/" + 1L)).andExpect(content().json(
                 new ObjectMapper().writeValueAsString(new Product(
                         1L,
@@ -73,7 +75,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void addProductTest() throws Exception {
+    public void addProductTest() throws Exception {
         this.mockMvc.perform(post("/items/add").contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper()
                                 .writeValueAsString(
@@ -83,18 +85,14 @@ class ProductControllerTest {
     }
 
     @Test
-    void buyProduct() throws Exception {
-        /*
-        TODO, Fråga Sigrun om: "Error message = Required parameter 'productId' is not present."
-        this.mockMvc.perform(post("/items/buy").contentType(MediaType.APPLICATION_JSON)
-                .content("{\"productId\": 1,\"customerId\": 1}"))
+    public void buyProductTest() throws Exception {
+        this.mockMvc.perform(get("/items/buy?productId=1&customerId=1"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Order number 1 is added"));
+                .andExpect(content().string(containsString("is added")));
 
-        this.mockMvc.perform(post("/items/buy").contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"productId\": 1000,\"customerId\": 1000}"))
+        this.mockMvc.perform(get("/items/buy?productId=1000&customerId=1000"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Product ID or customer ID does not exist."));
-         */
+
     }
 }

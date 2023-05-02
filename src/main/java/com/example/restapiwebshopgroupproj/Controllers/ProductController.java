@@ -46,9 +46,12 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/items/buy")
-    public String buyProduct(@RequestParam("productId") Long productId, @RequestParam("customerId") Long customerId) {
+    @RequestMapping("/items/buy")
+    public String buyProduct(@RequestParam Long productId,
+                             @RequestParam Long customerId) {
         List<Product> products = new ArrayList<>();
+        System.out.println("hej");
+
         Product product = productRepo.findById(productId).orElse(null);
         Customer customer = customerRepo.findById(customerId).orElse(null);
 
@@ -58,6 +61,8 @@ public class ProductController {
             orderRepo.save(order);
             return "Order number " + order.getId() + " is added";
         }
+
+
         return "Product ID or customer ID does not exist.";
     }
 }
